@@ -1,13 +1,14 @@
 import sys
 import os
+import re
 
 
 full_path = os.path.split(sys.argv[1]) 
 origin = full_path[0]
 name = full_path[1]
  
-# build new filename here
-fixed_name = name.replace(' ', '-')
+# Thanks to http://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
+fixed_name = re.sub(r'\W+', '-', name)
 fixed_path = os.path.join(origin, fixed_name)
 
 # convert tuple to string
