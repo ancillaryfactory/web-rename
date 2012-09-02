@@ -1,15 +1,16 @@
-WebRename version 0.2
+WebRename version 0.3
 
-Add 'Rename for Web' to the Context Menu
-===============================================================
+http://ancillaryfactory.github.com/web-rename/
+========================================================================
 
-\HKEY_CLASSES_ROOT\*\shell -> create key named 'Rename for web'
+INSTALLATION:
+Run setup.bat to copy webname.exe to C:\Program Files\Webname
 
-Create subkey named 'command'
+USAGE
+1. Right-click a file in Windows Explorer and select "Rename for Web"
+2. Drag a file to webname.exe
 
-Double-click 'default' in right pane
-
-Set value to C:\path\to\file\webname.exe "%1"
+In both cases, spaces in the filename will be converted to hyphens.
 
 
 ======================================================
