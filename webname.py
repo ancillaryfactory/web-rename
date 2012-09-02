@@ -6,9 +6,15 @@ import re
 full_path = os.path.split(sys.argv[1]) 
 origin = full_path[0]
 name = full_path[1]
- 
-# Thanks to http://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
-fixed_name = re.sub(r'\W+', '-', name)
+
+# split filename into name and extension
+name_and_extension = os.path.splitext(name)
+name_only = name_and_extension[0]
+extension = name_and_extension[1]
+
+ # Thanks to http://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
+fixed_name = re.sub(r'\W+', '-', name_only) + extension
+
 fixed_path = os.path.join(origin, fixed_name)
 
 # convert tuple to string

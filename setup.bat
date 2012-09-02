@@ -7,3 +7,5 @@ copy "readme.txt" "c:\Program Files\Webname"
 
 REG ADD "HKCR\*\shell\Rename for Web"
 REG ADD "HKCR\*\shell\Rename for Web\command" /d "C:\Program Files\Webname\webname.exe \"%%1\""
+
+echo msgbox"All done. Try right-click->Rename for web">a.vbs&a.vbs
