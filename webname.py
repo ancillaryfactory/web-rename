@@ -12,7 +12,7 @@ name_and_extension = os.path.splitext(name)
 name_only = name_and_extension[0]
 extension = name_and_extension[1]
 
- # Thanks to http://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
+# Thanks to http://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
 fixed_name = re.sub(r'\W+', '-', name_only) + extension
 
 fixed_path = os.path.join(origin, fixed_name)
