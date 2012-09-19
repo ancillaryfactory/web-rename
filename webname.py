@@ -1,13 +1,13 @@
 import sys
 import os
 import re
-
+from Tkinter import Tk
 
 full_path = os.path.split(sys.argv[1]) 
 origin = full_path[0]
 name = full_path[1]
 
-# split filename into name and extension
+# split original filename into name and extension
 name_and_extension = os.path.splitext(name)
 name_only = name_and_extension[0]
 extension = name_and_extension[1]
@@ -21,3 +21,11 @@ fixed_path = os.path.join(origin, fixed_name)
 fixed_path_string = ''.join(fixed_path)
 
 os.rename(sys.argv[1], fixed_path_string) 
+
+# add new filename to clipboard
+# http://stackoverflow.com/questions/579687/how-do-i-copy-a-string-to-the-clipboard-on-windows-using-python
+r = Tk()
+r.withdraw()
+r.clipboard_clear()
+r.clipboard_append(fixed_name)
+r.destroy()
