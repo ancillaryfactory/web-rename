@@ -579,6 +579,15 @@ h3 {
   color: #b6b6b6;
 }
 
+h3.filename {
+  font-family: monospace, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 13px;
+  text-align:center;
+  color:#222;
+  background: #4AAA0C;
+  font-weight: bold;
+}
+
 a {
   color: #ffcc00;
   font-weight: 400;
@@ -789,7 +798,7 @@ section {
 section #title {
   border: 0;
   outline: none;
-  margin: 0 0 50px 0;
+  margin: 0 0 5px 0;
   padding: 0 0 5px 0;
 }
 section #title h1 {
