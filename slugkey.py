@@ -23,11 +23,11 @@ def slugify_clipboard_string():
 
 	# paste the clipboard
 	# http://code.activestate.com/lists/python-list/584186/
-	# win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
-	# win32api.keybd_event(ord('V'), 0, win32con.KEYEVENTF_EXTENDEDKEY | 0, 0)
-	# time.sleep(0.05)
-	# win32api.keybd_event(ord('V'), 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)
-	# win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
+	win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
+	win32api.keybd_event(ord('V'), 0, win32con.KEYEVENTF_EXTENDEDKEY | 0, 0)
+	time.sleep(0.05)
+	win32api.keybd_event(ord('V'), 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)
+	win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 	del fixed_name, contents
 
@@ -36,7 +36,7 @@ def slugify_clipboard_string():
 hot = pyhk.pyhk()
  
 #add hotkey
-hot.addHotkey(['Ctrl','Alt','G'],slugify_clipboard_string)
+hot.addHotkey(['Ctrl','G'],slugify_clipboard_string)
  
 #start looking for hotkey.
 hot.start()
