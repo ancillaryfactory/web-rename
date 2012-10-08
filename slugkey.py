@@ -14,7 +14,7 @@ def slugify_clipboard_string():
 	contents = GetClipboardData(win32con.CF_TEXT) # get clipboard data
 
 	# fix the contents here
-	fixed_name = re.sub(r'\W+', '-', contents)
+	fixed_name = re.sub(r'[^a-zA-Z0-9_\.]+', '-', contents)
 	
 	# put the fixed string back on the clipboard
 	EmptyClipboard()
@@ -36,7 +36,7 @@ def slugify_clipboard_string():
 hot = pyhk.pyhk()
  
 #add hotkey
-hot.addHotkey(['Ctrl','G'],slugify_clipboard_string)
+hot.addHotkey(['Ctrl','Shift','F12'],slugify_clipboard_string)
  
 #start looking for hotkey.
 hot.start()
