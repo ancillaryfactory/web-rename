@@ -7,14 +7,16 @@ import time,win32api,win32con,win32gui
 from win32clipboard import *
 
 
-
 def slugify_clipboard_string():
+	# copy the highlighted text
+	# SendKeys.SendKeys('^c')
+
 	# http://stackoverflow.com/questions/3827511/copying-and-pasting-from-to-clipboard-with-python-win32
 	OpenClipboard() 
 	contents = GetClipboardData(win32con.CF_TEXT) # get clipboard data
 
 	# fix the contents here
-	fixed_name = re.sub(r'[^a-zA-Z0-9_\.]+', '-', contents)
+	fixed_name = re.sub(r'[^a-zA-Z0-9\.]+', '-', contents)
 	
 	# put the fixed string back on the clipboard
 	EmptyClipboard()
