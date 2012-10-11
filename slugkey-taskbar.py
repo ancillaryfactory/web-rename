@@ -1,6 +1,3 @@
-# Creates a task-bar icon.  Run from Python.exe to see the
-# messages printed.
-
 import win32api
 from win32gui import *
 import win32con
@@ -83,20 +80,19 @@ class MainWindow:
 
         # Try and find a custom icon
         hinst =  GetModuleHandle(None)
-        iconPathName = os.path.abspath(os.path.join( os.path.split(sys.executable)[0], "pyc.ico" ))
+        # iconPathName = os.path.abspath(os.path.join( os.path.split(sys.executable)[0], "pyc.ico" ))
+        iconPathName = os.path.join(os.path.dirname(__file__), 'pyc.ico')
         if not os.path.isfile(iconPathName):
 
             # Look in the source tree.
-
             iconPathName = os.path.abspath(os.path.join( os.path.split(sys.executable)[0], "..\\PC\\pyc.ico" ))
         if os.path.isfile(iconPathName):
             icon_flags = win32con.LR_LOADFROMFILE | win32con.LR_DEFAULTSIZE
             hicon = LoadImage(hinst, iconPathName, win32con.IMAGE_ICON, 0, 0, icon_flags)
         else:
             print "Can't find a Python icon file - using default"
+            print iconPathName
             hicon = LoadIcon(0, win32con.IDI_APPLICATION)
-
-
 
         flags = NIF_ICON | NIF_MESSAGE | NIF_TIP
         nid = (self.hwnd, 0, flags, win32con.WM_USER+20, hicon, "SlugKey")
