@@ -12,8 +12,6 @@ from win32clipboard import *
 
 
 def slugify_clipboard_string():
-        # copy the highlighted text
-        # SendKeys.SendKeys('^c')
 
         # http://stackoverflow.com/questions/3827511/copying-and-pasting-from-to-clipboard-with-python-win32
         OpenClipboard() 
@@ -34,7 +32,7 @@ def slugify_clipboard_string():
         time.sleep(0.05)
         win32api.keybd_event(ord('V'), 0, win32con.KEYEVENTF_EXTENDEDKEY | win32con.KEYEVENTF_KEYUP, 0)
         win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
-
+        
         del fixed_name, contents
 
 
@@ -71,7 +69,7 @@ class MainWindow:
         hot = pyhk.pyhk()
          
         #add hotkey
-        hot.addHotkey(['Ctrl','Shift','F12'],slugify_clipboard_string)
+        hot.addHotkey(['Ctrl','F12'],slugify_clipboard_string)
          
         #start looking for hotkey.
         hot.start()
@@ -95,7 +93,7 @@ class MainWindow:
             hicon = LoadIcon(0, win32con.IDI_APPLICATION)
 
         flags = NIF_ICON | NIF_MESSAGE | NIF_TIP
-        nid = (self.hwnd, 0, flags, win32con.WM_USER+20, hicon, "SlugKey")
+        nid = (self.hwnd, 0, flags, win32con.WM_USER+20, hicon, "SlugKey - Ctrl+F12 to create slug from clipboard text")
         Shell_NotifyIcon(NIM_ADD, nid)
 
 
@@ -113,17 +111,17 @@ class MainWindow:
 
 
     def OnTaskbarNotify(self, hwnd, msg, wparam, lparam):
-        if lparam==win32con.WM_LBUTTONUP:
-            print "You clicked me."
-        elif lparam==win32con.WM_LBUTTONDBLCLK:
-            print "You double-clicked me - goodbye"
+        #if lparam==win32con.WM_LBUTTONUP:
+            # print "You clicked me."
+        if lparam==win32con.WM_LBUTTONDBLCLK:
+            # print "You double-clicked me - goodbye"
             DestroyWindow(self.hwnd)
         elif lparam==win32con.WM_RBUTTONUP:
-            print "You right clicked me."
+            # print "You right clicked me."
             menu = CreatePopupMenu()
             # AppendMenu( menu, win32con.MF_STRING, 1023, "Display Dialog")
-            # AppendMenu( menu, win32con.MF_STRING, 1024, "Say Hello")
-            AppendMenu( menu, win32con.MF_STRING, 1025, "Close" )
+            AppendMenu( menu, win32con.MF_STRING, 1024, "Convert clipboard text to slug")
+            AppendMenu( menu, win32con.MF_STRING, 1025, "Exit" )
             pos = GetCursorPos()
 
             # See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/menus_0hdi.asp
@@ -140,7 +138,7 @@ class MainWindow:
             import win32gui_dialog
             win32gui_dialog.DemoModal()
         elif id == 1024:
-            print "Hello"
+            slugify_clipboard_string()
         elif id == 1025:
             print "Goodbye"
             DestroyWindow(self.hwnd)
